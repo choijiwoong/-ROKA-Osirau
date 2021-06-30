@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Local Osirau Home</h1>
+  <p>Welcome to Osirau, a website developed by <em>Jimo</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The osirau has the following record counts:</p>
+  <ul>
+  	<li><strong>Requests:</strong> {{num_Users}}</li>
+  	<li><strong>Mathcing:</strong> {{num_Servicers}}</li>
+  	<li><strong>Meeting_locations:</strong> {{num_Meeting_location}}</li>
+  </ul>
+
+  <div id="map" style="width:800px; height:600px;">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0b2461641fe36bfad41a885e385288f"></script>
+  <script>
+  	var container=document.getElementById('map');
+  	var options={
+  	center: new kakao.maps.LatLng(37.550950. 126.941017),//중심좌표
+  	level: 4//확대 축소의 정도
+  	};
+
+	var map= new.kakao.maps.Map(container, options);//화면에 지도생성, 리턴
+  </script>
+  </div>
+  <p>map view</p>
+{% endblock %}

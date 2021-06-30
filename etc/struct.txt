@@ -1,0 +1,17 @@
+gpsdata, request, call
+
+지도사용: 
+Django의 mapbox-location-field모듈: model의 field로서 지도를 사용하는 방법으로 위경도추출정도
+MapBox사용: 너무 detail함
+Kakao API: 적절해보임
+
+class Request(model.Model):
+	meet_location=models.CharField(max_length=50, default='')
+
+	latitude=models.FloatField(default=0.0)
+	longitude=models.FloatField(default=0.0)
+
+	user_name=models.CharField(max_length=15)
+
+class Receive(model.Model):
+	servicer_name=models.CharField(max_length=15)
