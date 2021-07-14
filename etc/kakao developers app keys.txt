@@ -1,5 +1,0 @@
-앱 키
-네이티브 앱 키	226ddfa4a7c4e9c5f3532d7f99560323
-REST API 키	cd94945f0d11d4f10d4ac14ff1505da1
-JavaScript 키	9ac31f85d0c509486a08d3c1e19912e2
-Admin 키	d7817e037ebdef3b32d1a30e626ed490
