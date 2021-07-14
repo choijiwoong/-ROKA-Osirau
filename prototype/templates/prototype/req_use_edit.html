@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>New Request for user</h1>
+    <form method="POST" class="Req_use-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+
+    </form>
+    <input id="locationon"></input>
+    <button type="button" id="mapbutton" onclick="map_search_click();">map search</button>
+    <p id=add style="display: none">{{user.email}}</p>
+<p id="reesult">status_test_print</p>
+
+<div id="map" style="width:750px;height:350px;"></div>
+
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0b2461641fe36bfad41a885e385288f&libraries=services"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(37.56622714621121, 126.97793436924096), // 지도의 중심좌표
+        level: 5 // 지도의 확대 레벨
+    };
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+function map_search_click(){//그뭐냐 맵검색 누르면 호출
+    geocoder.addressSearch(document.getElementById('locationon').value, function(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords,
+            clickable: true
+        });
+        marker.setDraggable(true);
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">검색하신 위치가 맞으면 클릭해주세오</div>'
+        });
+        infowindow.open(map, marker);
+        map.setCenter(coords);
+
+        kakao.maps.event.addListener(marker, 'click', function() {
+        // 마커 위에 인포윈도우를 표시합니다
+        var val=document.getElementById("reesult");
+        val.innerHTML=marker.getPosition();
+
+        var buffer=document.getElementById("id_latitude");
+        buffer.value=marker.getPosition().getLat();
+        buffer=document.getElementById("id_longitude");
+        buffer.value=marker.getPosition().getLng();
+        });
+    } 
+    });
+};
+ 
+// 마커에 클릭이벤트를 등록합니다
+
+
+</script>
+{% endblock %}

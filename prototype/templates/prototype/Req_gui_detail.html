@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Name: {{ req_gui.name }}</h1>
+  <p><strong>Name:</strong> <a href="">{{ req_gui.name }}</a></p>
+
+  <p><strong>Location:</strong> {{ req_gui.location }}</p>
+  <p><strong>Latitude:</strong> {{ req_gui.latitude }}</p>
+  <p><strong>Longitude:</strong> {{ req_gui.longitude }}</p>
+  <p><strong>Introduce:</strong> {{ req_gui.introduce }}</p>
+
+  <div id="map" style="width:750px;height:350px;"></div>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f0b2461641fe36bfad41a885e385288f"></script>
+  <script>
+  
+  var mapContainer = document.getElementById('map'), 
+      mapOption = { 
+          center: new kakao.maps.LatLng({{req_gui.latitude}}, {{req_gui.longitude}}), 
+          level: 3
+      };
+  var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+  var markerPosition  = new kakao.maps.LatLng({{req_gui.latitude}}, {{req_gui.longitude}}); 
+
+  var marker = new kakao.maps.Marker({
+      position: markerPosition
+  });
+  marker.setMap(map);
+
+  </script>
+  {% endblock %}

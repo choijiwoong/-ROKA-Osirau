@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+  
+{% block content %}
+<p></p>
+<p></p>
+<p></p>
+<h2>Register as Guide!</h2>
+<form method="POST" class="Regis_guide-form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="save btn btn-default">Save</button>
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>req_use List</h1>
+  {% if req_use_list %}
+  <ul>
+    {% for req_use in req_use_list %}
+      <li>
+        <a href="{{ req_use.get_absolute_url }}">{{ req_use.name }}</a> ({{req_use.location}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no req_use in the DB.</p>
+  {% endif %} 
+{% endblock %}

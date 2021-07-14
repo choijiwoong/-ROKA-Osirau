@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>req_gui List</h1>
+  {% if req_gui_list %}
+  <ul>
+    {% for req_gui in req_gui_list %}
+      <li>
+        <a href="{{ req_gui.get_absolute_url }}">{{ req_gui.name }}</a> ({{req_gui.location}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no req_gui in the DB.</p>
+  {% endif %} 
+{% endblock %}
